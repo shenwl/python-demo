@@ -4,3 +4,5 @@
 ## 项目
 1. client   [一个发送http(s)请求并获取响应的客户端]
 2. server   [一个http服务器] 
+3. model    [封装一个ORM的Model基类]
+4. sqlalchemy [flask-sqlalchemy的使用示例]
