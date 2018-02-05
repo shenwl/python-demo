@@ -15,16 +15,34 @@ db = SQLAlchemy(app)
 # 模型示例
 class User(db.Model):
     '''
-    网站会员数据模型
+    会员数据模型
     '''
     __tablename__ = 'user'
-    id = db.Column(db.integer, primary_key=True)    # 编号
-    name = db.Column(db.String(100), unique=True)   # 昵称
-    pwd = db.Column(db.String(100))             
-    email = db.Column(db.String(100), unique=True)  
+    id = db.Column(db.integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    pwd = db.Column(db.String(100))
+    email = db.Column(db.String(100), unique=True)
     phone = db.Column(db.String(11), unique=True)
     info = db.Column(db.Text)
-    face = db.Column(db.String(255))                # 头像
-    addtime = db.Column(db.DateTime, 
-            index=True, default=datetime.utcnow)    # 注册时间
-    uuid = db.Column(db.String(255), unique=True)   # 唯一标识
+    face = db.Column(db.String(255))
+    addtime = db.Column(db.DateTime, index=True, default=datatime.utcnow)
+    uuid = db.Column(db.String(255), unique=True)
+    # 外键关系关联
+    userlogs = db.relationship('Userlog', backref='user')
+
+    def __repr__(self):
+        return "<User: {}>".format(self.name)
+
+
+class Userlog(db.Model):
+    '''
+    会员登陆日志
+    '''
+    __tablename__ = "userlog"
+    id = db.Column(db.integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    ip = db.Column(db.String(100))
+    addtime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return "<Userlog: {}>".format(self.id)
