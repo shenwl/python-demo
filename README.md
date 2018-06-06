@@ -7,3 +7,4 @@
 3. model    [封装一个ORM的Model基类]
 4. sqlalchemy [flask-sqlalchemy的使用示例]
 5. cross_domain [flask跨域问题解决方案]
+6. pipenv [pipenv的基础使用]
